@@ -5,7 +5,6 @@ import {
   SET_SEARCH_RESULTS_SUCCESS,
   SET_SEARCH_RESULTS_FAILURE
 } from "./action-types";
-import { serialise } from "../utils";
 
 export default function* watcherSaga() {
   yield takeEvery(SET_SEARCH_RESULTS, apiWorkerSaga);

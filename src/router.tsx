@@ -7,8 +7,8 @@ import "./styles.css";
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
-      <Route path="/" component={Search} />
-      <Route path="/preview" component={Preview} />
+      <Route path="/" exact component={Search} />
+      <Route path="/preview/:searchResultId" component={Preview} />
     </BrowserRouter>
   );
 };

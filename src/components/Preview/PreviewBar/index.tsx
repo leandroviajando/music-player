@@ -1,8 +1,23 @@
 import React from "react";
 import "../../../styles.css";
+import { Link } from "react-router-dom";
 
-const PreviewBar: React.FC = () => {
-  return <div className="nav-bar">"Preview: Hello world!!!"</div>;
+interface PreviewBarProps {
+  trackName: string;
+  artistName: string;
+}
+
+const PreviewBar: React.FC<PreviewBarProps> = ({ trackName, artistName }) => {
+  return (
+    <div className="nav-bar">
+      <Link to="/">
+        <button>Back</button>
+      </Link>
+      <div>
+        {trackName} by {artistName}
+      </div>
+    </div>
+  );
 };
 
 export default PreviewBar;
