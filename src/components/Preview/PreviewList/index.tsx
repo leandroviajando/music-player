@@ -15,6 +15,7 @@ const PreviewList: React.FC<PreviewListProps> = ({
   searchResult,
   nextSearchResult
 }) => {
+  const URL_FOR_SHARING_ON_SOCIAL_MEDIA = "https%3A%2F%2Fwww.google.com%2F";
   return (
     <div className="list-container">
       <div className="list-item">
@@ -46,7 +47,13 @@ const PreviewList: React.FC<PreviewListProps> = ({
             <button>Next</button>
           </Link>
         )}
-        <button>Share on Facebook</button>
+        <Iframe
+          url={`https://www.facebook.com/plugins/share_button.php?href=${URL_FOR_SHARING_ON_SOCIAL_MEDIA}&layout=button&size=small&width=67&height=20&appId`}
+          width="67"
+          height="20"
+          scrolling="no"
+          allow="encrypted-media"
+        ></Iframe>
       </div>
     </div>
   );
