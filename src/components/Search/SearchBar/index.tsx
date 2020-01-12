@@ -1,25 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { setSearchTerm } from "../../../state/actions";
+import { setSearchTerm, setSearchResults } from "../../../state/actions";
 import { State } from "../../../interfaces";
 import "../../../styles.css";
 
 interface SearchBarProps {
   searchTerm: string;
   setSearchTerm(searchTerm: string): void;
+  setSearchResults(searchTerm: string): void;
 }
 
 export const UnconnectedSearchBar: React.FC<SearchBarProps> = ({
   searchTerm,
-  setSearchTerm
+  setSearchTerm,
+  setSearchResults
 }) => {
   return (
     <input
       type="text"
       value={searchTerm}
       placeholder="Search for a song..."
-      onChange={event => setSearchTerm(event.currentTarget.value)}
+      onChange={event => {
+        setSearchTerm(event.currentTarget.value);
+        setSearchResults(event.currentTarget.value);
+      }}
     ></input>
   );
 };
@@ -30,7 +35,9 @@ function mapStateToProps(state: State) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    setSearchTerm: (searchTerm: string) => dispatch(setSearchTerm(searchTerm))
+    setSearchTerm: (searchTerm: string) => dispatch(setSearchTerm(searchTerm)),
+    setSearchResults: (searchTerm: string) =>
+      dispatch(setSearchResults(searchTerm))
   };
 }
 
