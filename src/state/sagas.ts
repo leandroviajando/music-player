@@ -2,9 +2,10 @@ import { takeEvery, call, put } from "redux-saga/effects";
 import { Action } from "../interfaces";
 import {
   SET_SEARCH_RESULTS,
-  SEARCH_RESULTS_LOADED,
-  SEARCH_RESULTS_API_ERRORED
+  SET_SEARCH_RESULTS_SUCCESS,
+  SET_SEARCH_RESULTS_FAILURE
 } from "./action-types";
+import { serialise } from "../utils";
 
 export default function* watcherSaga() {
   yield takeEvery(SET_SEARCH_RESULTS, apiWorkerSaga);
@@ -13,9 +14,9 @@ export default function* watcherSaga() {
 function* apiWorkerSaga(action: Action<string>) {
   try {
     const response = yield call(getData, action.payload);
-    yield put({ type: SEARCH_RESULTS_LOADED, payload: response.results });
+    yield put({ type: SET_SEARCH_RESULTS_SUCCESS, payload: response.results });
   } catch (error) {
-    yield put({ type: SEARCH_RESULTS_API_ERRORED, payload: error });
+    yield put({ type: SET_SEARCH_RESULTS_FAILURE, payload: error.message });
   }
 }
 function getData(searchTerm: string) {

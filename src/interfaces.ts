@@ -5,7 +5,7 @@ export interface State {
 }
 
 export interface SearchResult {
-  _id: number;
+  _id?: number;
   wrapperType: string;
   kind: string;
   artistId: number;
