@@ -1,14 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
 import SearchResultsListItem from "../SearchResultsListItem";
-import { State, SearchResult } from "../../../interfaces";
+import { SearchResult } from "../../../interfaces";
 import "../../../styles.css";
 
 interface SearchResultListProps {
   searchResults: SearchResult[];
 }
 
-export const UnconnectedSearchResultsList: React.FC<SearchResultListProps> = ({
+export const SearchResultsList: React.FC<SearchResultListProps> = ({
   searchResults
 }) => {
   return (
@@ -23,13 +22,5 @@ export const UnconnectedSearchResultsList: React.FC<SearchResultListProps> = ({
     </div>
   );
 };
-
-function mapStateToProps(state: State) {
-  return { searchResults: state.searchResults };
-}
-
-const SearchResultsList = connect(mapStateToProps)(
-  UnconnectedSearchResultsList
-);
 
 export default SearchResultsList;

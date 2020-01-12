@@ -1,31 +1,24 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { sortBy } from "../../../state/actions";
 import "../../../styles.css";
 
 interface SortBarProps {
-  sortBy(property: string): void;
+  sortBySongLength(): void;
+  sortByGenre(): void;
+  sortByPrice(): void;
 }
 
-export const UnconnectedSortBar: React.FC<SortBarProps> = ({ sortBy }) => {
+export const SortBar: React.FC<SortBarProps> = ({
+  sortBySongLength,
+  sortByGenre,
+  sortByPrice
+}) => {
   return (
     <div className="nav-bar">
-      <button onClick={() => sortBy("trackTimeMillis")}>
-        Sort by song length
-      </button>
-      <button onClick={() => sortBy("primaryGenreName")}>Sort by genre</button>
-      <button onClick={() => sortBy("trackPrice")}>Sort by price</button>
+      <button onClick={sortBySongLength}>Sort by song length</button>
+      <button onClick={sortByGenre}>Sort by genre</button>
+      <button onClick={sortByPrice}>Sort by price</button>
     </div>
   );
 };
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    sortBy: (property: string) => dispatch(sortBy(property))
-  };
-}
-
-const SortBar = connect(null, mapDispatchToProps)(UnconnectedSortBar);
 
 export default SortBar;

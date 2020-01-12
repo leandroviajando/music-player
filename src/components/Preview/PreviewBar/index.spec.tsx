@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import PreviewBar from "./index";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<PreviewBar />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("PreviewBar component test suite", () => {
+  it("renders without crashing", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(
+      <BrowserRouter>
+        <PreviewBar trackName="Smells Like Teen Spirit" artistName="Nirvana" />
+      </BrowserRouter>,
+      div
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });

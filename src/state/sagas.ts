@@ -1,25 +1,25 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { Action } from "../interfaces";
 import {
-  SET_SEARCH_RESULTS,
-  SET_SEARCH_RESULTS_SUCCESS,
-  SET_SEARCH_RESULTS_FAILURE
+  GET_SEARCH_RESULTS,
+  GET_SEARCH_RESULTS_SUCCESS,
+  GET_SEARCH_RESULTS_FAILURE
 } from "./action-types";
+import { getData, serialise } from "../utils";
 
 export default function* watcherSaga() {
-  yield takeEvery(SET_SEARCH_RESULTS, apiWorkerSaga);
+  yield takeEvery(GET_SEARCH_RESULTS, getSearchResultsWorkerSaga);
 }
 
-function* apiWorkerSaga(action: Action<string>) {
+function* getSearchResultsWorkerSaga(action: Action<string>) {
   try {
     const response = yield call(getData, action.payload);
-    yield put({ type: SET_SEARCH_RESULTS_SUCCESS, payload: response.results });
+    const searchResults = yield call(serialise, response.results);
+    yield put({
+      type: GET_SEARCH_RESULTS_SUCCESS,
+      payload: searchResults
+    });
   } catch (error) {
-    yield put({ type: SET_SEARCH_RESULTS_FAILURE, payload: error.message });
+    yield put({ type: GET_SEARCH_RESULTS_FAILURE, payload: error.message });
   }
-}
-function getData(searchTerm: string) {
-  return fetch(
-    `https://itunes.apple.com/search?term=${searchTerm}`
-  ).then(response => response.json());
 }

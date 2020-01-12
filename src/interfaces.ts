@@ -1,3 +1,8 @@
+export interface Action<T> {
+  type: string;
+  payload: T;
+}
+
 export interface State {
   searchTerm: string;
   searchResults: SearchResult[];
@@ -24,9 +29,4 @@ export interface SearchResult {
   trackTimeMillis: number;
   primaryGenreName: string;
   trackPrice: number;
-}
-
-export interface Action<T> {
-  type: string;
-  payload: T;
 }

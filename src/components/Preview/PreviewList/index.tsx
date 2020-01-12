@@ -2,12 +2,13 @@ import React from "react";
 import Iframe from "react-iframe";
 import { Link } from "react-router-dom";
 import { SearchResult } from "../../../interfaces";
+import { APP_BASE_URL } from "../../../config";
 import "../../../styles.css";
 
 interface PreviewListProps {
-  previousSearchResult: SearchResult | undefined;
+  previousSearchResult?: SearchResult | undefined;
   searchResult: SearchResult;
-  nextSearchResult: SearchResult | undefined;
+  nextSearchResult?: SearchResult | undefined;
 }
 
 const PreviewList: React.FC<PreviewListProps> = ({
@@ -15,7 +16,6 @@ const PreviewList: React.FC<PreviewListProps> = ({
   searchResult,
   nextSearchResult
 }) => {
-  const URL_FOR_SHARING_ON_SOCIAL_MEDIA = "https%3A%2F%2Fwww.google.com%2F";
   return (
     <div className="list-container">
       <div className="list-item">
@@ -48,7 +48,7 @@ const PreviewList: React.FC<PreviewListProps> = ({
           </Link>
         )}
         <Iframe
-          url={`https://www.facebook.com/plugins/share_button.php?href=${URL_FOR_SHARING_ON_SOCIAL_MEDIA}&layout=button&size=small&width=67&height=20&appId`}
+          url={`https://www.facebook.com/plugins/share_button.php?href=${APP_BASE_URL}&layout=button&size=small&width=67&height=20&appId`}
           width="67"
           height="20"
           scrolling="no"

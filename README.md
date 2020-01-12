@@ -1,5 +1,7 @@
 # Music Player
 
+Search for and preview any track, collection or artist available on iTunes.
+
 ## Requirements
 
 Docker, and / or npm
@@ -21,6 +23,22 @@ In the absence of Docker, all of the React CLI commands work as well, of course:
 
 ## Development
 
-**Hot reloading** is enabled. Any changes made to the code in the `src` directory are immediately mounted in the running container.
+**Hot reloading** is enabled. Any changes made to the code in the `src` directory and `package.json` are immediately mounted in the running container. (New) **dependencies** can be installed / updated with `docker-compose exec app npm install`.
 
-(New) **dependencies** can be installed / updated with `docker-compose exec app npm install`.
+## Features
+
+### Search
+
+- Search for songs, collections and artists
+- Sort by song length, genre and price
+
+### Preview
+
+- Preview any title
+- Play and pause
+- Go back to Search, or to the previous or next title
+- Share on Facebook (needs to be deployed with domain to work, set to Google atm - see `APP_BASE_URL` in `config.ts`)
+
+## Technologies
+
+React - Redux - TypeScript - Docker

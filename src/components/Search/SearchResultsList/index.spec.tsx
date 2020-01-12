@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { UnconnectedSearchResultsList } from "./index";
+import { SearchResultsList } from "./index";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<UnconnectedSearchResultsList searchResults={[]} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("SearchResultList component test suite", () => {
+  it("renders without crashing", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<SearchResultsList searchResults={[]} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });
