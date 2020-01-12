@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Search from "./components/Search";
 import Preview from "./components/Preview";
 import "./styles.css";
 
-const App: React.FC = () => {
+const Router: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Route path="/" component={Search} />
       <Route path="/preview" component={Preview} />
-    </Router>
+    </BrowserRouter>
   );
 };
 
-export default App;
+export default Router;

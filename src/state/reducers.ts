@@ -1,15 +1,19 @@
-import actionTypeConstants from "./action-type-constants";
+import { State, Action } from "../interfaces";
+import { SET_SEARCH_TERM } from "./action-types";
 
-const initialState = {
+const initialState: State = {
   searchTerm: "",
   searchResults: [],
   selectedItemId: null
 };
 
-function rootReducer(state = initialState, action: any) {
-  if (action.type === actionTypeConstants.UPDATE_SEARCH_RESULTS) {
+function rootReducer(
+  state: State = initialState,
+  action: Action<string>
+): State {
+  if (action.type === SET_SEARCH_TERM) {
     return Object.assign({}, state, {
-      searchResults: action.payload
+      searchTerm: action.payload
     });
   }
   return state;
