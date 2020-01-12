@@ -6,7 +6,7 @@ Docker, and / or npm
 
 ## Instructions
 
-- Spin up the container: `docker-compose up [-d --build]`
+- Spin up the container: `docker-compose up -d [--build]`
 - Run the test suite in watch mode: `docker-compose exec app npm test`
 - Open the app at `localhost:3000` / `0.0.0.0:3000`
 - Shut down the container: `docker-compose down`
