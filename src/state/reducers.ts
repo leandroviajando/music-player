@@ -12,8 +12,7 @@ export const INIT_ITEMS_COUNT = 0;
 
 const initialState: State = {
   searchTerm: "",
-  searchResults: [],
-  selectedItemId: INIT_ITEMS_COUNT
+  searchResults: []
 };
 
 function rootReducer(state: State = initialState, action: Action<any>): State {

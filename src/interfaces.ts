@@ -1,7 +1,6 @@
 export interface State {
   searchTerm: string;
-  searchResults: any[];
-  selectedItemId: number;
+  searchResults: SearchResult[];
 }
 
 export interface SearchResult {
