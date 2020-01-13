@@ -1,5 +1,5 @@
-import { API_BASE_URL } from "./config";
-import { SearchResult } from "./interfaces";
+import { API_BASE_URL } from "../config";
+import { SearchResult } from "../interfaces";
 
 export function getData(searchTerm: string) {
   return fetch(`${API_BASE_URL}?term=${searchTerm}`).then(response =>

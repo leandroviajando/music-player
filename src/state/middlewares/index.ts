@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
-import { Action } from "../interfaces";
-import { GET_SEARCH_RESULTS, RESET_SEARCH_RESULTS } from "./action-types";
+import { Action } from "../../interfaces";
+import { GET_SEARCH_RESULTS, RESET_SEARCH_RESULTS } from "../actions/types";
 
 function middleware({ dispatch }: { dispatch: Dispatch }) {
   return function(next: Dispatch) {

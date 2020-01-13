@@ -1,11 +1,11 @@
-import { State, Action } from "../interfaces";
+import { State, Action } from "../../interfaces";
 import {
   SET_SEARCH_TERM,
   RESET_SEARCH_RESULTS,
   GET_SEARCH_RESULTS_SUCCESS,
   GET_SEARCH_RESULTS_FAILURE,
   SET_SORTED_SEARCH_RESULTS
-} from "./action-types";
+} from "../actions/types";
 
 const initialState: State = {
   searchTerm: "",

@@ -1,11 +1,11 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { Action } from "../interfaces";
+import { Action } from "../../interfaces";
 import {
   GET_SEARCH_RESULTS,
   GET_SEARCH_RESULTS_SUCCESS,
   GET_SEARCH_RESULTS_FAILURE
-} from "./action-types";
-import { getData, serialise } from "../utils";
+} from "../actions/types";
+import { getData, serialise } from "../../utils";
 
 export default function* watcherSaga() {
   yield takeEvery(GET_SEARCH_RESULTS, getSearchResultsWorkerSaga);

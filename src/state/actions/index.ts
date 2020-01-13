@@ -1,9 +1,9 @@
-import { Action, SearchResult } from "../interfaces";
+import { Action, SearchResult } from "../../interfaces";
 import {
   SET_SEARCH_TERM,
   GET_SEARCH_RESULTS,
   SET_SORTED_SEARCH_RESULTS
-} from "./action-types";
+} from "./types";
 
 export function setSearchTerm(searchTerm: string): Action<string> {
   return { type: SET_SEARCH_TERM, payload: searchTerm };

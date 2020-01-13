@@ -23,7 +23,9 @@ In the absence of Docker, all of the React CLI commands work as well, of course:
 
 ## Development
 
-**Hot reloading** is enabled. Any changes made to the code in the `src` directory and `package.json` are immediately mounted in the running container. (New) **dependencies** can be installed / updated with `docker-compose exec app npm install`.
+**Hot reloading** is enabled. Any changes made to the code in the `src` directory and `package.json` are immediately mounted in the running container.
+
+(New) **dependencies** can be installed / updated with `docker-compose exec app npm install`.
 
 ## Features
 
@@ -37,7 +39,7 @@ In the absence of Docker, all of the React CLI commands work as well, of course:
 - Preview any title
 - Play and pause
 - Go back to Search, or to the previous or next title
-- Share on Facebook (needs to be deployed with domain to work, set to Google atm - see `APP_BASE_URL` in `config.ts`)
+- Share on Facebook (needs to be deployed with a domain to work properly; set to Google atm - see `APP_BASE_URL` in `config.ts`)
 
 ## Technologies
 

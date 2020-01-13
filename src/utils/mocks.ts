@@ -1,5 +1,6 @@
-export const mockSearchResult = {
-  _id: 1,
+import { SearchResult } from "../interfaces";
+
+export const mockSearchResult: SearchResult = {
   wrapperType: "track",
   kind: "song",
   artistId: 32940,

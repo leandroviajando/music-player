@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PreviewList from "./index";
-import { mockSearchResult } from "../../../mocks";
+import { mockSearchResult } from "../../../utils/mocks";
 
 describe("PreviewList component test suite", () => {
   it("renders without crashing", () => {

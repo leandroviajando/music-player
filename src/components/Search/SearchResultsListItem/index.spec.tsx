@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import SearchResultsListItem from "./index";
-import { mockSearchResult } from "../../../mocks";
+import { mockSearchResult } from "../../../utils/mocks";
 
 describe("SearchResultListItem component test suite", () => {
   it("renders without crashing", () => {
