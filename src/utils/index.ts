@@ -26,12 +26,27 @@ export function sort(searchResults: any[], property: string): SearchResult[] {
     : searchResults;
 }
 
-function deepCopy(object: object) {
+export function deepCopy(object: object) {
   return JSON.parse(JSON.stringify(object));
+}
+
+export function getDateStringFrom(timeStamp: string): string {
+  const date = new Date(timeStamp);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return anyIsNaN(day, month, year) ? timeStamp : `${day}/${month}/${year}`;
+}
+
+function anyIsNaN(...args: any): boolean {
+  for (let arg of args) {
+    if (Number.isNaN(arg)) return true;
+  }
+  return false;
 }
 
 export function getMinutesAndSecondsFrom(milliseconds: number): string {
   const minutes = Math.floor(milliseconds / 60000);
   const seconds = Number(((milliseconds % 60000) / 1000).toFixed(0));
-  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  return `${minutes}:${seconds < 10 ? 0 : ""}${seconds} mins`;
 }

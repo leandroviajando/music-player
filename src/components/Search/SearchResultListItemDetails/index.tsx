@@ -1,6 +1,6 @@
 import React from "react";
 import { SearchResult } from "../../../interfaces";
-import { getMinutesAndSecondsFrom } from "../../../utils";
+import { getDateStringFrom, getMinutesAndSecondsFrom } from "../../../utils";
 import "../../../styles.css";
 
 interface SearchResultsListItemDetailsProps {
@@ -20,9 +20,9 @@ const SearchResultsListItemDetails: React.FC<SearchResultsListItemDetailsProps> 
           {searchResult.collectionName})
         </div>
       )}
-      <div>Release date: {searchResult.releaseDate}</div>
+      <div>Release date: {getDateStringFrom(searchResult.releaseDate)}</div>
       <div>
-        Length: {getMinutesAndSecondsFrom(searchResult.trackTimeMillis)} mins
+        Length: {getMinutesAndSecondsFrom(searchResult.trackTimeMillis)}
       </div>
       <div>Genre: {searchResult.primaryGenreName}</div>
       <div>Price: {searchResult.trackPrice}</div>
