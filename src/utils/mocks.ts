@@ -1,4 +1,4 @@
-import { SearchResult } from "../interfaces";
+import { SearchResult, State } from "../interfaces";
 
 const mockSearchResult: SearchResult = {
   wrapperType: "track",
@@ -52,12 +52,19 @@ const mockSearchResult2: SearchResult = {
   trackPrice: 4.5
 };
 
-export function getMockSearchResults() {
+export function getMockSearchTerm(): string {
+  return "nirvana";
+}
+
+export function getMockSearchResults(): SearchResult[] {
   return [mockSearchResult, mockSearchResult2].map(mockSearchResult =>
     JSON.parse(JSON.stringify(mockSearchResult))
   );
 }
 
-export function getMockSearchTerm() {
-  return "nirvana";
+export function getMockInitialState(): State {
+  return {
+    searchTerm: "",
+    searchResults: []
+  };
 }

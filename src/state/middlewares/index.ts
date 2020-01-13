@@ -7,7 +7,7 @@ function middleware({ dispatch }: { dispatch: Dispatch }) {
     return function(action: Action<any>) {
       if (action.type === GET_SEARCH_RESULTS) {
         if (action.payload === "") {
-          return dispatch({ type: RESET_SEARCH_RESULTS });
+          return dispatch({ type: RESET_SEARCH_RESULTS, payload: [] });
         }
       }
       return next(action);

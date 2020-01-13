@@ -7,10 +7,10 @@ import {
   SET_SORTED_SEARCH_RESULTS
 } from "../actions/types";
 
-const initialState: State = {
+const initialState: State = Object.freeze({
   searchTerm: "",
   searchResults: []
-};
+});
 
 function rootReducer(state: State = initialState, action: Action<any>): State {
   switch (action.type) {
@@ -24,7 +24,7 @@ function rootReducer(state: State = initialState, action: Action<any>): State {
       return { ...state, searchResults: action.payload };
     }
     case GET_SEARCH_RESULTS_FAILURE: {
-      console.log(action.payload);
+      console.error(action.payload);
       return { ...state };
     }
     case SET_SORTED_SEARCH_RESULTS: {

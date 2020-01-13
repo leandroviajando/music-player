@@ -11,7 +11,7 @@ export default function* watcherSaga() {
   yield takeEvery(GET_SEARCH_RESULTS, getSearchResultsWorkerSaga);
 }
 
-function* getSearchResultsWorkerSaga(action: Action<string>) {
+export function* getSearchResultsWorkerSaga(action: Action<string>) {
   try {
     const response = yield call(getData, action.payload);
     const searchResults = yield call(serialise, response.results);
