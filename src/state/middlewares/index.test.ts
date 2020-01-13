@@ -1,14 +1,28 @@
 import { getSearchResultsWorkerSaga } from "./sagas";
 import {
   GET_SEARCH_RESULTS,
-  GET_SEARCH_RESULTS_SUCCESS
+  GET_SEARCH_RESULTS_SUCCESS,
+  RESET_SEARCH_RESULTS
 } from "../actions/types";
-import { getMockSearchTerm } from "../../utils/mocks";
+import { getMockSearchTerm, getMockReduxFunctions } from "../../utils/mocks";
+import { Dispatch } from "redux";
+import { State, Action } from "../../interfaces";
+import middleware from ".";
 
 describe("Middlewares test suite", () => {
-  test.todo(
-    "middleware catches a GET_SEARCH_RESULTS call with an empty search term"
-  );
+  const { dispatchMock, nextMock } = getMockReduxFunctions();
+
+  test("middleware catches a GET_SEARCH_RESULTS call with an empty search term", () => {
+    middleware({ dispatch: dispatchMock })(nextMock)({
+      type: GET_SEARCH_RESULTS,
+      payload: ""
+    });
+    expect(dispatchMock).toHaveBeenCalledWith({
+      type: RESET_SEARCH_RESULTS,
+      payload: []
+    });
+  });
+
   test.todo(
     "getSearchResultsWorkerSaga returns GET_SEARCH_RESULTS_SUCCESS action with search results as payload"
     // , async () => {

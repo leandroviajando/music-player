@@ -1,4 +1,4 @@
-import { SearchResult, State } from "../interfaces";
+import { SearchResult, State, Action } from "../interfaces";
 
 const mockSearchResult: SearchResult = {
   wrapperType: "track",
@@ -67,4 +67,18 @@ export function getMockInitialState(): State {
     searchTerm: "",
     searchResults: []
   };
+}
+
+export function getMockReduxFunctions() {
+  const dispatchMock: any = jest.fn(
+    (action: Action<any>): Action<any> => {
+      return action;
+    }
+  );
+  const nextMock: any = jest.fn(
+    (action: Action<any>): Action<any> => {
+      return action;
+    }
+  );
+  return { dispatchMock, nextMock };
 }
