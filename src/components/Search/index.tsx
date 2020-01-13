@@ -10,7 +10,7 @@ import {
   setSortedSearchResults
 } from "../../state/actions";
 import { State, SearchResult } from "../../interfaces";
-import { sort } from "../../utils";
+import { sort, serialise } from "../../utils";
 import "../../styles.css";
 
 interface SearchProps {
@@ -29,13 +29,13 @@ const UnconnectedSearch: React.FC<SearchProps> = ({
   setSortedSearchResults
 }) => {
   function sortBySongLength(): void {
-    setSortedSearchResults(sort(searchResults, "trackTimeMillis"));
+    setSortedSearchResults(serialise(sort(searchResults, "trackTimeMillis")));
   }
   function sortByGenre(): void {
-    setSortedSearchResults(sort(searchResults, "primaryGenreName"));
+    setSortedSearchResults(serialise(sort(searchResults, "primaryGenreName")));
   }
   function sortByPrice(): void {
-    setSortedSearchResults(sort(searchResults, "trackPrice"));
+    setSortedSearchResults(serialise(sort(searchResults, "trackPrice")));
   }
 
   return (
