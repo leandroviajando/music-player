@@ -11,7 +11,7 @@ export const SearchResultsList: React.FC<SearchResultListProps> = ({
   searchResults
 }) => {
   return (
-    <div className="list-container">
+    <div className="margin-1pc">
       {searchResults.length > 0 &&
         searchResults.map(searchResult => (
           <SearchResultsListItem

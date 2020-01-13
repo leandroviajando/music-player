@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchResultsListItemDetails from "../SearchResultListItemDetails";
 import { SearchResult } from "../../../interfaces";
 import "../../../styles.css";
 
@@ -16,19 +17,18 @@ const SearchResultsListItem: React.FC<SearchResultsListItemProps> = ({
         pathname: `/preview/${searchResult._id}`
       }}
     >
-      <div className="list-item">
-        {searchResult.trackName}
-        {searchResult.artistName}
-        More in detail:
-        {searchResult.collectionName}
-        {searchResult.releaseDate}
-        <img
-          alt={String(searchResult.trackId)}
-          src={searchResult.artworkUrl100}
-        ></img>
-        {searchResult.trackTimeMillis}
-        {searchResult.primaryGenreName}
-        {searchResult.trackPrice}
+      <div className="flex-row">
+        <div className="margin-1pc">
+          <img
+            alt={String(searchResult.trackId)}
+            src={searchResult.artworkUrl100}
+          ></img>
+        </div>
+
+        <SearchResultsListItemDetails
+          searchResult={searchResult}
+          displayTitleArtistAndCollection={true}
+        />
       </div>
     </Link>
   );

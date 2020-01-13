@@ -13,16 +13,18 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   getSearchResults
 }) => {
   return (
-    <input
-      type="text"
-      value={searchTerm}
-      placeholder="Search for a song..."
-      onChange={event => {
-        const searchTerm = event.currentTarget.value;
-        setSearchTerm(searchTerm);
-        getSearchResults(searchTerm);
-      }}
-    ></input>
+    <div className="center nav-bar">
+      <input
+        type="text"
+        value={searchTerm}
+        placeholder="Search for a song..."
+        onChange={event => {
+          const searchTerm = event.currentTarget.value;
+          setSearchTerm(searchTerm);
+          getSearchResults(searchTerm);
+        }}
+      ></input>
+    </div>
   );
 };
 

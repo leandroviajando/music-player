@@ -13,10 +13,16 @@ export const SortBar: React.FC<SortBarProps> = ({
   sortByPrice
 }) => {
   return (
-    <div className="nav-bar">
-      <button onClick={sortBySongLength}>Sort by song length</button>
-      <button onClick={sortByGenre}>Sort by genre</button>
-      <button onClick={sortByPrice}>Sort by price</button>
+    <div className="center">
+      <button className="margin-1pc" onClick={sortBySongLength}>
+        Sort by song length
+      </button>
+      <button className="margin-1pc" onClick={sortByGenre}>
+        Sort by genre
+      </button>
+      <button className="margin-1pc" onClick={sortByPrice}>
+        Sort by price
+      </button>
     </div>
   );
 };

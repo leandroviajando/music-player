@@ -9,13 +9,16 @@ interface PreviewBarProps {
 
 const PreviewBar: React.FC<PreviewBarProps> = ({ trackName, artistName }) => {
   return (
-    <div className="nav-bar">
-      <Link to="/">
-        <button>Back</button>
-      </Link>
+    <div className="flex-row-space-between nav-bar">
+      <div>
+        <Link to="/">
+          <button>Back</button>
+        </Link>
+      </div>
       <div>
         {trackName} by {artistName}
       </div>
+      <div></div>
     </div>
   );
 };

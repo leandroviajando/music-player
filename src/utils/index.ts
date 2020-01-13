@@ -29,3 +29,9 @@ export function sort(searchResults: any[], property: string): SearchResult[] {
 function deepCopy(object: object) {
   return JSON.parse(JSON.stringify(object));
 }
+
+export function getMinutesAndSecondsFrom(milliseconds: number): string {
+  const minutes = Math.floor(milliseconds / 60000);
+  const seconds = Number(((milliseconds % 60000) / 1000).toFixed(0));
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
