@@ -1,4 +1,5 @@
 import { SearchResult, State, Action } from "../interfaces";
+import { deepCopy } from ".";
 
 const mockSearchResult: SearchResult = {
   wrapperType: "track",
@@ -58,7 +59,7 @@ export function getMockSearchTerm(): string {
 
 export function getMockSearchResults(): SearchResult[] {
   return [mockSearchResult, mockSearchResult2].map(mockSearchResult =>
-    JSON.parse(JSON.stringify(mockSearchResult))
+    deepCopy(mockSearchResult)
   );
 }
 
@@ -70,15 +71,7 @@ export function getMockInitialState(): State {
 }
 
 export function getMockReduxFunctions() {
-  const dispatchMock: any = jest.fn(
-    (action: Action<any>): Action<any> => {
-      return action;
-    }
-  );
-  const nextMock: any = jest.fn(
-    (action: Action<any>): Action<any> => {
-      return action;
-    }
-  );
+  const dispatchMock: any = jest.fn((action: Action<any>): void => {});
+  const nextMock: any = jest.fn((action: Action<any>): void => {});
   return { dispatchMock, nextMock };
 }
