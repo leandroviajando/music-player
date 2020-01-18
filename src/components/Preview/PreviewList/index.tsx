@@ -6,13 +6,7 @@ import { SearchResult } from "../../../interfaces";
 import { APP_BASE_URL } from "../../../config";
 import "../../../styles.css";
 
-interface PreviewListProps {
-  previousSearchResult?: SearchResult | undefined;
-  searchResult: SearchResult;
-  nextSearchResult?: SearchResult | undefined;
-}
-
-const PreviewList: React.FC<PreviewListProps> = ({
+const PreviewList: React.FC<PropTypes> = ({
   previousSearchResult,
   searchResult,
   nextSearchResult
@@ -29,7 +23,7 @@ const PreviewList: React.FC<PreviewListProps> = ({
 
         <div
           className="margin-1pc top-botttom-margin-5pc"
-          style={{ marginLeft: "35%" }}
+          style={{ marginLeft: "40%" }}
         >
           <Iframe url={searchResult.previewUrl} width="250px" height="75px" />
         </div>
@@ -78,5 +72,11 @@ const PreviewList: React.FC<PreviewListProps> = ({
     </div>
   );
 };
+
+interface PropTypes {
+  previousSearchResult?: SearchResult | undefined;
+  searchResult: SearchResult;
+  nextSearchResult?: SearchResult | undefined;
+}
 
 export default PreviewList;

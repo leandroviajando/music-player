@@ -4,13 +4,7 @@ import SearchResultsListItemDetails from "../SearchResultListItemDetails";
 import { SearchResult } from "../../../interfaces";
 import "../../../styles.css";
 
-interface SearchResultsListItemProps {
-  searchResult: SearchResult;
-}
-
-const SearchResultsListItem: React.FC<SearchResultsListItemProps> = ({
-  searchResult
-}) => {
+const SearchResultsListItem: React.FC<PropTypes> = ({ searchResult }) => {
   return (
     <Link
       to={{
@@ -33,5 +27,9 @@ const SearchResultsListItem: React.FC<SearchResultsListItemProps> = ({
     </Link>
   );
 };
+
+interface PropTypes {
+  searchResult: SearchResult;
+}
 
 export default SearchResultsListItem;

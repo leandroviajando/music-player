@@ -1,16 +1,12 @@
-import * as actions from ".";
+import * as actions from "../actions";
 import * as types from "./types";
-import { getMockSearchTerm, getMockSearchResults } from "../../utils/mocks";
-import { SearchResult } from "../../interfaces";
+import { SONG_LENGTH } from "../../constants";
+import { getMockSearchTerm } from "../../utils/mocks";
 
 describe("Actions test suite", () => {
   let searchTerm: string;
-  let searchResults: SearchResult[];
 
-  beforeAll(() => {
-    searchTerm = getMockSearchTerm();
-    searchResults = getMockSearchResults();
-  });
+  beforeAll(() => (searchTerm = getMockSearchTerm()));
 
   test("should create an action to set the search term in the store", () => {
     expect(actions.setSearchTerm(searchTerm)).toEqual({
@@ -26,10 +22,10 @@ describe("Actions test suite", () => {
     });
   });
 
-  test("should create an action to update the store with sorted search results", () => {
-    expect(actions.setSortedSearchResults(searchResults)).toEqual({
-      type: types.SET_SORTED_SEARCH_RESULTS,
-      payload: searchResults
+  test("should create an action to update the store with search results sorted by a given property", () => {
+    expect(actions.sortSearchResults(SONG_LENGTH)).toEqual({
+      type: types.SORT_SEARCH_RESULTS,
+      payload: SONG_LENGTH
     });
   });
 });

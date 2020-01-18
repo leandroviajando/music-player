@@ -15,4 +15,6 @@ describe("SearchResultListItem component test suite", () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  test.todo("redirects to the corresponding Preview component on clicking");
 });

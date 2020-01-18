@@ -3,13 +3,7 @@ import SearchResultsListItem from "../SearchResultsListItem";
 import { SearchResult } from "../../../interfaces";
 import "../../../styles.css";
 
-interface SearchResultListProps {
-  searchResults: SearchResult[];
-}
-
-export const SearchResultsList: React.FC<SearchResultListProps> = ({
-  searchResults
-}) => {
+export const SearchResultsList: React.FC<PropTypes> = ({ searchResults }) => {
   return (
     <div className="margin-1pc">
       {searchResults.length > 0 &&
@@ -22,5 +16,9 @@ export const SearchResultsList: React.FC<SearchResultListProps> = ({
     </div>
   );
 };
+
+interface PropTypes {
+  searchResults: SearchResult[];
+}
 
 export default SearchResultsList;

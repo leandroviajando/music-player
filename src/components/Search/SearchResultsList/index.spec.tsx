@@ -8,4 +8,8 @@ describe("SearchResultList component test suite", () => {
     ReactDOM.render(<SearchResultsList searchResults={[]} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  test.todo(
+    "renders a SearchResultListItem component for each search result received as props"
+  );
 });

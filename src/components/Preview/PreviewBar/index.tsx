@@ -2,12 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../../styles.css";
 
-interface PreviewBarProps {
-  trackName: string;
-  artistName: string;
-}
-
-const PreviewBar: React.FC<PreviewBarProps> = ({ trackName, artistName }) => {
+const PreviewBar: React.FC<PropTypes> = ({ trackName, artistName }) => {
   return (
     <div className="flex-row-space-between nav-bar">
       <div>
@@ -22,5 +17,10 @@ const PreviewBar: React.FC<PreviewBarProps> = ({ trackName, artistName }) => {
     </div>
   );
 };
+
+interface PropTypes {
+  trackName: string;
+  artistName: string;
+}
 
 export default PreviewBar;

@@ -18,11 +18,13 @@ export function serialise(searchResults: SearchResult[]): SearchResult[] {
 
 export function sort(searchResults: any[], property: string): SearchResult[] {
   return searchResults.length && searchResults[0][property]
-    ? deepCopy(searchResults).sort((a: any, b: any) => {
-        if (a[property] > b[property]) return 1;
-        else if (a[property] < b[property]) return -1;
-        return 0;
-      })
+    ? serialise(
+        deepCopy(searchResults).sort((a: any, b: any) => {
+          if (a[property] > b[property]) return 1;
+          else if (a[property] < b[property]) return -1;
+          return 0;
+        })
+      )
     : searchResults;
 }
 
@@ -35,14 +37,9 @@ export function getDateStringFrom(timeStamp: string): string {
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  return anyIsNaN(day, month, year) ? timeStamp : `${day}/${month}/${year}`;
-}
-
-function anyIsNaN(...args: any): boolean {
-  for (let arg of args) {
-    if (Number.isNaN(arg)) return true;
-  }
-  return false;
+  return ![day, month, year].some(number => Number.isNaN(number))
+    ? `${day}/${month}/${year}`
+    : timeStamp;
 }
 
 export function getMinutesAndSecondsFrom(milliseconds: number): string {

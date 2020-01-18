@@ -1,13 +1,7 @@
 import React from "react";
 import "../../../styles.css";
 
-interface SearchBarProps {
-  searchTerm: string;
-  setSearchTerm(searchTerm: string): void;
-  getSearchResults(searchTerm: string): void;
-}
-
-export const SearchBar: React.FC<SearchBarProps> = ({
+export const SearchBar: React.FC<PropTypes> = ({
   searchTerm,
   setSearchTerm,
   getSearchResults
@@ -27,5 +21,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     </div>
   );
 };
+
+interface PropTypes {
+  searchTerm: string;
+  setSearchTerm(searchTerm: string): void;
+  getSearchResults(searchTerm: string): void;
+}
 
 export default SearchBar;

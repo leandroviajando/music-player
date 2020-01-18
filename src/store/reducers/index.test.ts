@@ -1,4 +1,4 @@
-import reducer from ".";
+import reducer from "../reducers";
 import * as types from "../actions/types";
 import {
   getMockInitialState,
@@ -6,27 +6,26 @@ import {
   getMockSearchResults
 } from "../../utils/mocks";
 import { State, SearchResult } from "../../interfaces";
+import { PRICE } from "../../constants";
+import { sort } from "../../utils";
 
 describe("Reducers test suite", () => {
   let initialState: State;
   let searchTerm: string;
   let searchResults: SearchResult[];
 
-  beforeAll(() => {
-    searchTerm = getMockSearchTerm();
-    searchResults = getMockSearchResults();
-  });
+  beforeAll(() => (searchTerm = getMockSearchTerm()));
 
   beforeEach(() => {
     initialState = getMockInitialState();
+    searchResults = getMockSearchResults();
     console.error = jest.fn();
   });
 
   test("should return the initial state", () => {
-    expect(reducer(initialState, { type: "", payload: "" })).toEqual({
-      searchTerm: "",
-      searchResults: []
-    });
+    expect(reducer(initialState, { type: "", payload: "" })).toEqual(
+      initialState
+    );
   });
 
   test("should handle SET_SEARCH_TERM", () => {
@@ -79,15 +78,16 @@ describe("Reducers test suite", () => {
     expect(console.error).toHaveBeenCalledTimes(1);
   });
 
-  test("should handle SET_SORTED_SEARCH_RESULTS", () => {
+  test("should handle SORT_SEARCH_RESULTS", () => {
+    initialState.searchResults = [...searchResults];
     expect(
       reducer(initialState, {
-        type: types.SET_SORTED_SEARCH_RESULTS,
-        payload: searchResults
+        type: types.SORT_SEARCH_RESULTS,
+        payload: PRICE
       })
     ).toEqual({
       searchTerm: initialState.searchTerm,
-      searchResults: searchResults
+      searchResults: sort(searchResults, PRICE)
     });
   });
 });

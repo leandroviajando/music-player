@@ -17,4 +17,8 @@ describe("SearchBar component test suite", () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
+
+  test.todo("contains an input field with placeholder 'Search for a song...'");
+
+  test.todo("onChange setSearchTerm and getSearchResults are called");
 });

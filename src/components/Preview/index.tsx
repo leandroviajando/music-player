@@ -1,17 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
 import PreviewBar from "./PreviewBar";
 import PreviewList from "./PreviewList";
 import { SearchResult, State } from "../../interfaces";
 import "../../styles.css";
 
-interface PreviewProps {
-  searchResults: SearchResult[];
-}
-
-const UnconnectedPreview: React.FC<PreviewProps> = ({ searchResults }) => {
+const Preview: React.FC = () => {
   const { searchResultId } = useParams();
+  const searchResults = useSelector((state: State) => state.searchResults);
 
   const previousSearchResult = findSearchResultAt(1);
   const searchResult = findSearchResultAt(0);
@@ -44,11 +41,5 @@ const UnconnectedPreview: React.FC<PreviewProps> = ({ searchResults }) => {
     </div>
   );
 };
-
-function mapStateToProps(state: State) {
-  return { searchResults: state.searchResults };
-}
-
-const Preview = connect(mapStateToProps)(UnconnectedPreview);
 
 export default Preview;

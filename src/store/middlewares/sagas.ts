@@ -20,6 +20,9 @@ export function* getSearchResultsWorkerSaga(action: Action<string>) {
       payload: searchResults
     });
   } catch (error) {
-    yield put({ type: GET_SEARCH_RESULTS_FAILURE, payload: error.message });
+    yield put({
+      type: GET_SEARCH_RESULTS_FAILURE,
+      payload: error.message ? error.message : error
+    });
   }
 }

@@ -3,12 +3,7 @@ import { SearchResult } from "../../../interfaces";
 import { getDateStringFrom, getMinutesAndSecondsFrom } from "../../../utils";
 import "../../../styles.css";
 
-interface SearchResultsListItemDetailsProps {
-  searchResult: SearchResult;
-  displayTitleArtistAndCollection: boolean;
-}
-
-const SearchResultsListItemDetails: React.FC<SearchResultsListItemDetailsProps> = ({
+const SearchResultsListItemDetails: React.FC<PropTypes> = ({
   searchResult,
   displayTitleArtistAndCollection
 }) => {
@@ -29,5 +24,10 @@ const SearchResultsListItemDetails: React.FC<SearchResultsListItemDetailsProps> 
     </div>
   );
 };
+
+interface PropTypes {
+  searchResult: SearchResult;
+  displayTitleArtistAndCollection: boolean;
+}
 
 export default SearchResultsListItemDetails;

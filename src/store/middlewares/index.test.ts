@@ -7,7 +7,7 @@ import {
 import { getMockSearchTerm, getMockReduxFunctions } from "../../utils/mocks";
 import { Dispatch } from "redux";
 import { State, Action } from "../../interfaces";
-import middleware from ".";
+import middleware from "../middlewares";
 
 describe("Middlewares test suite", () => {
   const { dispatchMock, nextMock } = getMockReduxFunctions();

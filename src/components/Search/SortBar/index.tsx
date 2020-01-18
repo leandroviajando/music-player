@@ -1,13 +1,7 @@
 import React from "react";
 import "../../../styles.css";
 
-interface SortBarProps {
-  sortBySongLength(): void;
-  sortByGenre(): void;
-  sortByPrice(): void;
-}
-
-export const SortBar: React.FC<SortBarProps> = ({
+export const SortBar: React.FC<PropTypes> = ({
   sortBySongLength,
   sortByGenre,
   sortByPrice
@@ -26,5 +20,11 @@ export const SortBar: React.FC<SortBarProps> = ({
     </div>
   );
 };
+
+interface PropTypes {
+  sortBySongLength(): void;
+  sortByGenre(): void;
+  sortByPrice(): void;
+}
 
 export default SortBar;

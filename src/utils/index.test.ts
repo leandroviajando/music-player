@@ -8,6 +8,7 @@ import {
 } from ".";
 import { getMockSearchResults, getMockSearchTerm } from "./mocks";
 import { SearchResult } from "../interfaces";
+import { SONG_LENGTH } from "../constants";
 
 describe("Utils test suite", () => {
   let searchTerm: string;
@@ -45,13 +46,13 @@ describe("Utils test suite", () => {
   });
 
   test("sort returns a new searchResults array sorted by the given property", () => {
-    const sortedSearchResults = sort(searchResults, "trackPrice");
+    const sortedSearchResults = sort(searchResults, SONG_LENGTH);
     expect(searchResults[0].trackId).toBe(sortedSearchResults[1].trackId);
     expect(searchResults[1].trackId).toBe(sortedSearchResults[0].trackId);
   });
 
   test("sort does not mutate the searchResults passed to it", () => {
-    const sortedSearchResults = sort(searchResults, "trackPrice");
+    const sortedSearchResults = sort(searchResults, SONG_LENGTH);
     expect(searchResults).not.toEqual(sortedSearchResults);
   });
 

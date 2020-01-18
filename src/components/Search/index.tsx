@@ -1,74 +1,37 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import SearchBar from "./SearchBar";
 import SortBar from "./SortBar";
 import SearchResultsList from "./SearchResultsList";
+import { SONG_LENGTH, GENRE, PRICE } from "../../constants";
 import {
   setSearchTerm,
   getSearchResults,
-  setSortedSearchResults
-} from "../../state/actions";
-import { State, SearchResult } from "../../interfaces";
-import { sort, serialise } from "../../utils";
+  sortSearchResults
+} from "../../store/actions";
+import { State } from "../../interfaces";
 import "../../styles.css";
 
-interface SearchProps {
-  searchTerm: string;
-  searchResults: SearchResult[];
-  setSearchTerm(searchTerm: string): void;
-  getSearchResults(searchTerm: string): void;
-  setSortedSearchResults(searchResults: SearchResult[]): void;
-}
-
-const UnconnectedSearch: React.FC<SearchProps> = ({
-  searchTerm,
-  searchResults,
-  setSearchTerm,
-  getSearchResults,
-  setSortedSearchResults
-}) => {
-  function sortBySongLength(): void {
-    setSortedSearchResults(serialise(sort(searchResults, "trackTimeMillis")));
-  }
-  function sortByGenre(): void {
-    setSortedSearchResults(serialise(sort(searchResults, "primaryGenreName")));
-  }
-  function sortByPrice(): void {
-    setSortedSearchResults(serialise(sort(searchResults, "trackPrice")));
-  }
+const Search: React.FC = () => {
+  const searchTerm = useSelector((state: State) => state.searchTerm);
+  const searchResults = useSelector((state: State) => state.searchResults);
+  const dispatch = useDispatch();
 
   return (
     <div className="Search">
       <SearchBar
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        getSearchResults={getSearchResults}
+        setSearchTerm={searchTerm => dispatch(setSearchTerm(searchTerm))}
+        getSearchResults={searchTerm => dispatch(getSearchResults(searchTerm))}
       />
       <SortBar
-        sortBySongLength={sortBySongLength}
-        sortByGenre={sortByGenre}
-        sortByPrice={sortByPrice}
+        sortBySongLength={() => dispatch(sortSearchResults(SONG_LENGTH))}
+        sortByGenre={() => dispatch(sortSearchResults(GENRE))}
+        sortByPrice={() => dispatch(sortSearchResults(PRICE))}
       />
       <SearchResultsList searchResults={searchResults} />
     </div>
   );
 };
-
-function mapStateToProps(state: State) {
-  return { searchTerm: state.searchTerm, searchResults: state.searchResults };
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    setSearchTerm: (searchTerm: string) => dispatch(setSearchTerm(searchTerm)),
-    getSearchResults: (searchTerm: string) =>
-      dispatch(getSearchResults(searchTerm)),
-    setSortedSearchResults: (searchResults: SearchResult[]) =>
-      dispatch(setSortedSearchResults(searchResults))
-  };
-}
-
-const Search = connect(mapStateToProps, mapDispatchToProps)(UnconnectedSearch);
 
 export default Search;
