@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SearchBar from "./SearchBar";
@@ -22,7 +23,10 @@ const Search: React.FC = () => {
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={searchTerm => dispatch(setSearchTerm(searchTerm))}
-        getSearchResults={searchTerm => dispatch(getSearchResults(searchTerm))}
+        getSearchResults={_.debounce(
+          searchTerm => dispatch(getSearchResults(searchTerm)),
+          500
+        )}
       />
       <SortBar
         sortBySongLength={() => dispatch(sortSearchResults(SONG_LENGTH))}
