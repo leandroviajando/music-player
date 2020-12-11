@@ -6,24 +6,22 @@ import "../../../styles.css";
 const SearchResultsListItemDetails: React.FC<PropTypes> = ({
   searchResult,
   displayTitleArtistAndCollection
-}) => {
-  return (
-    <div className="margin-1pc">
-      {displayTitleArtistAndCollection && (
-        <div>
-          {searchResult.trackName} by {searchResult.artistName} (
-          {searchResult.collectionName})
-        </div>
-      )}
-      <div>Release date: {getDateStringFrom(searchResult.releaseDate)}</div>
+}) => (
+  <div className="margin-1pc">
+    {displayTitleArtistAndCollection && (
       <div>
-        Length: {getMinutesAndSecondsFrom(searchResult.trackTimeMillis)}
+        {searchResult.trackName} by {searchResult.artistName} (
+        {searchResult.collectionName})
       </div>
-      <div>Genre: {searchResult.primaryGenreName}</div>
-      <div>Price: {searchResult.trackPrice}</div>
+    )}
+    <div>Release date: {getDateStringFrom(searchResult.releaseDate)}</div>
+    <div>
+      Length: {getMinutesAndSecondsFrom(searchResult.trackTimeMillis)}
     </div>
-  );
-};
+    <div>Genre: {searchResult.primaryGenreName}</div>
+    <div>Price: {searchResult.trackPrice}</div>
+  </div>
+);
 
 interface PropTypes {
   searchResult: SearchResult;

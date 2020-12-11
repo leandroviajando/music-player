@@ -1,4 +1,4 @@
-import * as actions from "../actions";
+import * as actions from ".";
 import * as types from "./types";
 import { SONG_LENGTH } from "../../constants";
 import { getMockSearchTerm } from "../../utils/mocks";
