@@ -3,9 +3,9 @@ clear:
 
 start:
 	docker-compose up -d
-	sleep 3
 
 run: start
+	sleep 3
 	open http://localhost:3000
 
 install: start
