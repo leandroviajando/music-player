@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./package.json:/app/package.json
-      - ./src/:/app/src
+      - ./package.json:/usr/app/package.json
+      - ./src/:/usr/app/src
     ports:
       - 3000:3000
     restart: always
