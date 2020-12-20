@@ -8,7 +8,6 @@ services:
     volumes:
       - ./package.json:/app/package.json
       - ./src/:/app/src
-      - /app/node_modules
     ports:
       - 3000:3000
     restart: always
