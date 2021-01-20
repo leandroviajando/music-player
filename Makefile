@@ -1,20 +1,21 @@
+.PHONY: clear start open update-dependencies test shell stop
+
 clear:
 	find . -type f -name ".eslintcache" -delete
 
 start:
 	docker-compose up -d
 
-run: start
-	sleep 3
+open: | start
 	open http://localhost:3000
 
-install: start
+update-dependencies: | start
 	docker-compose exec app npm install
 
-test: start
+test: | start
 	docker-compose exec app npm test
 
-shell: start
+shell: | start
 	docker-compose exec app sh
 
 stop:
