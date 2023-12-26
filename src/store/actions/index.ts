@@ -1,7 +1,7 @@
 import { Action } from "../../interfaces";
 import {
-  SET_SEARCH_TERM,
   GET_SEARCH_RESULTS,
+  SET_SEARCH_TERM,
   SORT_SEARCH_RESULTS
 } from "./types";
 

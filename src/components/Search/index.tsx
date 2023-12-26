@@ -1,17 +1,17 @@
 import _ from "lodash";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SearchBar from "./SearchBar";
-import SortBar from "./SortBar";
-import SearchResultsList from "./SearchResultsList";
-import { SONG_LENGTH, GENRE, PRICE } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { GENRE, PRICE, SONG_LENGTH } from "../../constants";
+import { State } from "../../interfaces";
 import {
-  setSearchTerm,
   getSearchResults,
+  setSearchTerm,
   sortSearchResults
 } from "../../store/actions";
-import { State } from "../../interfaces";
 import "../../styles.css";
+import SearchBar from "./SearchBar";
+import SearchResultsList from "./SearchResultsList";
+import SortBar from "./SortBar";
 
 const Search: React.FC = () => {
   const searchTerm = useSelector((state: State) => state.searchTerm);
@@ -22,9 +22,9 @@ const Search: React.FC = () => {
     <div className="Search">
       <SearchBar
         searchTerm={searchTerm}
-        setSearchTerm={searchTerm => dispatch(setSearchTerm(searchTerm))}
+        setSearchTerm={(searchTerm: string) => dispatch(setSearchTerm(searchTerm))}
         getSearchResults={_.debounce(
-          searchTerm => dispatch(getSearchResults(searchTerm)),
+          (searchTerm: string) => dispatch(getSearchResults(searchTerm)),
           500
         )}
       />

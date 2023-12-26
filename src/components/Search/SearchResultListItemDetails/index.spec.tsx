@@ -1,18 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import SearchResultsListItemDetails from "./index";
+import { createRoot } from "react-dom/client";
 import { getMockSearchResults } from "../../../utils/mocks";
+import SearchResultsListItemDetails from "./index";
 
 describe("SearchResultListItem component test suite", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(
+
+    const root = createRoot(div);
+    root.render(
       <SearchResultsListItemDetails
         searchResult={getMockSearchResults()[0]}
         displayTitleArtistAndCollection={true}
-      />,
-      div
+      />
     );
-    ReactDOM.unmountComponentAtNode(div);
+
+    root.unmount();
   });
 });

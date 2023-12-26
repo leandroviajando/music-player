@@ -1,11 +1,11 @@
-import { takeEvery, call, put } from "redux-saga/effects";
-import { Action } from "../../interfaces";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { Action, SearchResult } from "../../interfaces";
+import { getData, serialise } from "../../utils";
 import {
   GET_SEARCH_RESULTS,
-  GET_SEARCH_RESULTS_SUCCESS,
-  GET_SEARCH_RESULTS_FAILURE
+  GET_SEARCH_RESULTS_FAILURE,
+  GET_SEARCH_RESULTS_SUCCESS
 } from "../actions/types";
-import { getData, serialise } from "../../utils";
 
 export default function* watcherSaga() {
   yield takeEvery(GET_SEARCH_RESULTS, getSearchResultsWorkerSaga);
@@ -13,8 +13,8 @@ export default function* watcherSaga() {
 
 export function* getSearchResultsWorkerSaga(action: Action<string>) {
   try {
-    const response = yield call(getData, action.payload);
-    const searchResults = yield call(serialise, response.results);
+    const response: { results: SearchResult[]} = yield call(getData, action.payload);
+    const searchResults: SearchResult[] = yield call(serialise, response.results);
     yield put({
       type: GET_SEARCH_RESULTS_SUCCESS,
       payload: searchResults
@@ -22,7 +22,7 @@ export function* getSearchResultsWorkerSaga(action: Action<string>) {
   } catch (error) {
     yield put({
       type: GET_SEARCH_RESULTS_FAILURE,
-      payload: error.message ? error.message : error
+      payload: error instanceof Error && error.message ? error.message : error
     });
   }
 }

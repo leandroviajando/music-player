@@ -1,18 +1,16 @@
-import React from "react";
 import { render } from "@testing-library/react";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { act } from 'react-dom/test-utils';
 import { BrowserRouter } from "react-router-dom";
-import ReactDOM from "react-dom";
-import PreviewList from "./index";
 import { getMockSearchResults } from "../../../utils/mocks";
+import PreviewList from "./index";
 
 describe("PreviewList component test suite", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(
-      <PreviewList searchResult={getMockSearchResults()[0]} />,
-      div
-    );
-    ReactDOM.unmountComponentAtNode(div);
+
+    act(() => createRoot(div).render(<PreviewList searchResult={getMockSearchResults()[0]} />));
   });
 
   it("doesn't show Previous or Next buttons if there are no previous or next search results", () => {

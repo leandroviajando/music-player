@@ -1,21 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { SearchBar } from "./index";
+import { createRoot } from "react-dom/client";
 import { getMockSearchTerm } from "../../../utils/mocks";
+import { SearchBar } from "./index";
 
 describe("SearchBar component test suite", () => {
   it("renders without crashing", () => {
     const searchTerm = getMockSearchTerm();
     const div = document.createElement("div");
-    ReactDOM.render(
+
+    const root = createRoot(div);
+    root.render(
       <SearchBar
         searchTerm={searchTerm}
-        setSearchTerm={searchTerm => {}}
+        setSearchTerm={(_: string) => {}}
         getSearchResults={() => {}}
-      />,
-      div
+      />
     );
-    ReactDOM.unmountComponentAtNode(div);
+
+    root.unmount();
   });
 
   test.todo("contains an input field with placeholder 'Search for a song...'");

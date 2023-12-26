@@ -1,6 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { render } from "@testing-library/react";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { act } from 'react-dom/test-utils';
 import { BrowserRouter } from "react-router-dom";
 import PreviewBar from "./index";
 
@@ -10,13 +11,12 @@ describe("PreviewBar component test suite", () => {
 
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(
+
+    act(() => createRoot(div).render(
       <BrowserRouter>
         <PreviewBar trackName={trackName} artistName={artistName} />
-      </BrowserRouter>,
-      div
-    );
-    ReactDOM.unmountComponentAtNode(div);
+      </BrowserRouter>
+    ));
   });
 
   it("displays the track and artist names", () => {

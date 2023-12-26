@@ -1,15 +1,16 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import reducers from "./reducers";
 import middlewares from "./middlewares";
 import watcherSaga from "./middlewares/sagas";
+import reducers from "./reducers";
 
 const sagas = createSagaMiddleware();
 
-const store = createStore(
-  reducers,
-  compose(applyMiddleware(middlewares, sagas))
-);
+const store = configureStore({
+  reducer: reducers,
+  // @ts-ignore
+  middleware: (() => [middlewares, sagas]),
+});
 
 sagas.run(watcherSaga);
 

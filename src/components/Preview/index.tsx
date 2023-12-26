@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams, Redirect } from "react-router-dom";
-import PreviewBar from "./PreviewBar";
-import PreviewList from "./PreviewList";
+import { useNavigate, useParams } from "react-router-dom";
 import { SearchResult, State } from "../../interfaces";
 import "../../styles.css";
+import PreviewBar from "./PreviewBar";
+import PreviewList from "./PreviewList";
 
 const Preview: React.FC = () => {
+  const navigate = useNavigate();
   const { searchResultId } = useParams();
   const searchResults = useSelector((state: State) => state.searchResults);
 
@@ -24,7 +25,8 @@ const Preview: React.FC = () => {
   }
 
   if (!searchResult) {
-    return <Redirect to="/" />;
+    navigate("/");
+    return null;
   }
 
   return (

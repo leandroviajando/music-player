@@ -1,6 +1,7 @@
 export interface Action<T> {
   type: string;
   payload: T;
+  [key: string]: any; // Add string index signature
 }
 
 export interface State {

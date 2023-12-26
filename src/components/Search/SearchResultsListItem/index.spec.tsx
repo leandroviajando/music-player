@@ -1,19 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import SearchResultsListItem from "./index";
 import { getMockSearchResults } from "../../../utils/mocks";
+import SearchResultsListItem from "./index";
 
 describe("SearchResultListItem component test suite", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(
+
+    const root = createRoot(div);
+    root.render(
       <BrowserRouter>
         <SearchResultsListItem searchResult={getMockSearchResults()[0]} />
-      </BrowserRouter>,
-      div
+      </BrowserRouter>
     );
-    ReactDOM.unmountComponentAtNode(div);
+
+    root.unmount();
   });
 
   test.todo("redirects to the corresponding Preview component on clicking");
